@@ -7,7 +7,6 @@ const getDistance = (y1, x1, y2, x2) => {
 }
 
 const toggleOpacity = (index) => {
-	// wrapper.childNodes[index].style.opacity = 0
 	console.log(wrapper)
 	const grid = [
 		getComputedStyle(wrapper).getPropertyValue('--rows'),
