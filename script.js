@@ -7,7 +7,6 @@ const getDistance = (y1, x1, y2, x2) => {
 }
 
 const toggleOpacity = (index) => {
-	console.log(wrapper)
 	const grid = [
 		getComputedStyle(wrapper).getPropertyValue('--rows'),
 		getComputedStyle(wrapper).getPropertyValue('--columns'),
@@ -15,7 +14,6 @@ const toggleOpacity = (index) => {
 
 	const row = Math.floor(index / grid[1])
 	col = index % grid[1]
-	console.log(row, col)
 
 	wrapper.childNodes.forEach((tile) => {
 		let r = Math.floor(tile.dataset.index / grid[1])
@@ -23,14 +21,16 @@ const toggleOpacity = (index) => {
 
 		const distance = getDistance(row, col, r, c)
 
-		tile.style.transitionDelay = 80 * distance + 'ms'
-		tile.style.opacity = tile.style.opacity == 0 ? 1 : 0
+		setTimeout(() => {
+			tile.style.opacity = tile.style.opacity == 0 ? 1 : 0
+		}, 80 * distance)
 	})
 }
 
 const createTile = (index) => {
 	const tile = document.createElement('div')
 	tile.classList.add('tile')
+	tile.style.opacity = 1
 	tile.dataset.index = index
 
 	tile.addEventListener('click', () => {
@@ -41,8 +41,6 @@ const createTile = (index) => {
 }
 
 const createTiles = (quantity) => {
-	console.log('app')
-
 	Array.from(Array(quantity)).map((tile, index) => {
 		wrapper.appendChild(createTile(index))
 	})
