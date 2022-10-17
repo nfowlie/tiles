@@ -33,7 +33,7 @@ const createTile = (index) => {
 	tile.style.opacity = 1
 	tile.dataset.index = index
 
-	tile.addEventListener('click', () => {
+	tile.addEventListener('mouseup', () => {
 		toggleOpacity(index)
 	})
 
